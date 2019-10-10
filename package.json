@@ -1,0 +1,33 @@
+{
+  "name": "universal-uploader",
+  "version": "1.0.0",
+  "description": "File uploader that can upload files to any cloud provider of your choise.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix universal-uploader-client",
+    "server": "nodemon index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Romkin7/universal-uploader.git"
+  },
+  "keywords": [
+    "React",
+    "Nodejs"
+  ],
+  "author": "Roman Tuomisto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Romkin7/universal-uploader/issues"
+  },
+  "homepage": "https://github.com/Romkin7/universal-uploader#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  }
+}
