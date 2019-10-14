@@ -1,0 +1,15 @@
+.message {
+    height: 2rem;
+    width: 100%;
+    color: #fff;
+}
+
+.message-green {
+    border: .2rem solid #68d391;
+    background-color: #68d391;
+}
+
+.message-red {
+    border: .2rem solid firebrick;
+    background-color: firebrick;
+} 
