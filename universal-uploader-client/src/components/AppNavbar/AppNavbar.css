@@ -1,0 +1,21 @@
+header {
+    width: 100%;
+    position: relative;
+    height: 6rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+}
+
+header h2 {
+    font-size: 2rem;
+    line-height: 1.5rem;
+    letter-spacing: 1.1px;
+    color: #333;
+}
