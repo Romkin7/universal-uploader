@@ -1,0 +1,132 @@
+main {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+section.leftSection, section.rightSection {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+section.rightSection {
+    margin-top: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+section.rightSection h4, 
+section.rightSection ul {
+    width: 100%;
+}
+
+section.rightSection h4 {
+    font-size: 1.6rem;
+    background-color: #0460f6;
+    color: white;
+    line-height: 1em;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+form.uploaderForm {
+    padding: 1rem;
+    flex-basis: 600px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+form.uploaderForm .dropZone {
+    width: 100%;
+    border: 3px dashed #0460f6;
+    color: #0460f6;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form.uploaderForm .dropZone.success {
+    border: 3px dashed #68d391;
+    color: #68d391;
+}
+
+form..uploaderForm .dropZone.danger {
+    border: 3px dashed firebrick;
+    color: firebrick;
+}
+
+form.uploaderForm ul {
+    list-style: none;
+}
+
+form.uploaderForm label {
+    display: flex;
+    font-size: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    color: #0460f6;
+}
+
+form.uploaderForm label .fa-5x {
+    font-size: 3rem;
+}
+
+form.uploaderForm #fileInput {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
+/* Desktop ----------- */
+@media only screen and (min-width : 768px) {
+    /* Styles */
+    main {
+        flex-direction: row;
+        min-height: 84vh;
+    }
+    section.leftSection, section.rightSection {
+        padding: 1.5rem .5rem;
+        position: relative;
+        width: 50%;
+        min-height: 84vh;
+    }
+
+    section.rightSection {
+        margin-top: 0;
+    }
+
+    section.leftSection form.uploaderForm {
+        min-height: 60vh;
+    }
+
+    form.uploaderForm .dropZone {
+        height: 30vh;
+    }
+    section.rightSection h4 {
+        font-size: 2.2rem;
+    }
+    section.rightSection h4, 
+    section.rightSection ul {
+        width: 80%;
+    }
+
+    form.uploaderForm label {
+        font-size: 1.3rem;
+    }
+
+    form.uploaderForm label .fa-5x {
+        font-size: 5rem;
+    }
+}
+  

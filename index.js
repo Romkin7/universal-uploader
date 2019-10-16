@@ -1,4 +1,4 @@
-/** Universal uploaders main server file */
+/** Cloud apps main server file */
 /** Start NodeJS process by running this file */
 
 /** External npm packages */
@@ -49,18 +49,18 @@ if(app.get("env") === "Websiteion") {
 
 //Serve react app in production to the browser
 if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname + "/universal-uploader-client/build")));
+    app.use(express.static(path.join(__dirname + "/cloud-client/build")));
     app.get("*", (req, res) => {
         res.sendFile("index.html");
     });
 }
 
 //
-app.use("/api/files", handleFilesRoutes);
+app.use("/api", handleFilesRoutes);
 
 /** Here error handler is returning all kinds of errors app might ecounter */
 app.use(errorHandler);
 
 app.listen(app.get("port"), () => {
-    console.info(`Universal uploader is now running on port ${app.get("port")}`);
+    console.info(`Cloud is now running on port ${app.get("port")}`);
 });
