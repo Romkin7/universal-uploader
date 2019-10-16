@@ -11,9 +11,14 @@ Website
 
 Table of contents
 -----------------
+Getting started
 Features
 Getting started
-Options
+
+Getting started
+---------------
+Seting up Dropbox account
+
 
 Features
 --------
