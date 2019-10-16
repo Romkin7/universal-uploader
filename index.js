@@ -2,7 +2,9 @@
 /** Start NodeJS process by running this file */
 
 /** External npm packages */
-require('dotenv').config();
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const express = require('express'); // webserver is made with express
 const bodyParser = require('body-parser'); //used to parse http request body
 const fileUpload = require('express-fileupload'); // used to enable req.files in express app
