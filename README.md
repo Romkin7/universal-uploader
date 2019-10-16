@@ -1,5 +1,5 @@
-Universal File Uploader
-=======================
+Cloud - Universal file manager
+==============================
 
 React & Node file uploader v1.0.0
 

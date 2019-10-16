@@ -1,12 +1,12 @@
 {
-  "name": "universal-uploader",
+  "name": "cloud",
   "version": "1.0.0",
-  "description": "File uploader that can upload files to any cloud provider of your choise.",
+  "description": "Upload your images and work or other important files to Dropbox",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "npm start --prefix universal-uploader-client",
+    "client": "npm start --prefix cloud-client",
     "server": "nodemon index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },

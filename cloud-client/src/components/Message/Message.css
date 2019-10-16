@@ -1,0 +1,35 @@
+.message {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 100%;
+    height: 4rem;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1em;
+    letter-spacing: 1.1px;
+    margin-bottom: 2rem;
+    animation: fade-in 1s ease-in forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.green {
+    border: .2rem solid #68d391;
+    background-color: #68d391;
+}
+
+.red {
+    border: .2rem solid firebrick;
+    background-color: firebrick;
+} 
