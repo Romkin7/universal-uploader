@@ -116,10 +116,10 @@ class Uploader extends Component{
                 <main>
                     <section className="leftSection">
                         <form className="uploaderForm">
-                        {this.state.showMessage && <Message bgColor={this.state.error ? "red" : "green"} closeMessageHandler={this.closeMessageHandler} message={this.state.error ? this.state.error.messge : "Success, file is uploaded to Dropbox!"} />}
+                        {this.state.showMessage && <Message bgColor={this.state.error ? "red" : "green"} closeMessageHandler={this.closeMessageHandler} message={this.state.error ? this.state.error.message : "Success, file is uploaded to Dropbox!"} />}
                             <div className={"dropZone"+(this.state.error ? " danger" : this.state.showMessage ? " success" : "")}>
                                 <label htmlFor="fileInput">
-                                    <FontAwesomeIcon size="5x" color={(this.state.error ? "firebrick" : this.state.showMessage ? "#68d391" : "#0460f6")} icon={["fas", "cloud-upload-alt"]} /> 
+                                    <FontAwesomeIcon size="5x" color={(this.state.error ? "#b22222" : this.state.showMessage ? "#68d391" : "#0460f6")} icon={["fas", "cloud-upload-alt"]} /> 
                                     {content}
                                 </label>
                                 <input type="file" id="fileInput" name="file_upload" src={this.state.src} onChange={this.handleOnDrop} />

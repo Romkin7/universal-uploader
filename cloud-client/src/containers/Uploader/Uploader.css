@@ -58,9 +58,16 @@ form.uploaderForm .dropZone.success {
     border: 3px dashed #68d391;
     color: #68d391;
 }
+form.uploaderForm .dropZone.success label {
+    color: #68d391;
+}
 
-form..uploaderForm .dropZone.danger {
+form.uploaderForm .dropZone.danger {
     border: 3px dashed firebrick;
+    color: firebrick;
+}
+
+form.uploaderForm .dropZone.danger label {
     color: firebrick;
 }
 
