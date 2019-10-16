@@ -2,7 +2,9 @@
 /** Start NodeJS process by running this file */
 
 /** External npm packages */
-require('dotenv').config();
+if(process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const express = require('express'); // webserver is made with express
 const bodyParser = require('body-parser'); //used to parse http request body
 const fileUpload = require('express-fileupload'); // used to enable req.files in express app
@@ -47,6 +49,9 @@ if(app.get("env") === "Websiteion") {
     app.use(morgan('dev'));
 }
 
+//use API routes here
+app.use("/api", handleFilesRoutes);
+
 //Serve react app in production to the browser
 if(process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname + "/cloud-client/build")));
@@ -54,9 +59,6 @@ if(process.env.NODE_ENV === "production") {
         res.sendFile("index.html");
     });
 }
-
-//
-app.use("/api", handleFilesRoutes);
 
 /** Here error handler is returning all kinds of errors app might ecounter */
 app.use(errorHandler);
