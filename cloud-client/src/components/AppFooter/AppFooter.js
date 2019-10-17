@@ -8,7 +8,7 @@ const AppFooter = () => {
             <footer>
                 <p>
                     <FontAwesomeIcon icon={["fas", "copyright"]} color=" #0460f6" size="1x" />
-                    <wbr/> Roman Tuomisto & Telia 2019
+                    <wbr/> Roman Tuomisto 2019
                 </p>
             </footer>
         </>
