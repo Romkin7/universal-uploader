@@ -98,6 +98,7 @@ class Uploader extends Component{
               return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
             }
           }).map((file) => {
+              console.log(file);
             const type = file['.tag']
             let thumbnail
             if (type === 'file') {
@@ -108,7 +109,7 @@ class Uploader extends Component{
                 thumbnail = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWZvbGRlciI+PHBhdGggZD0iTTIyIDE5YTIgMiAwIDAgMS0yIDJINGEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmg1bDIgM2g5YTIgMiAwIDAgMSAyIDJ6Ij48L3BhdGg+PC9zdmc+`
             }
             return(    
-                <ListItem  key={file.id} thumbnail={thumbnail} clickHandler={() => this.handleFileDownload(file.path_lower)} name={file.name} />
+                <ListItem  key={file.id} thumbnail={thumbnail} clickHandler={() => this.handleFileDownload(file.path_display)} name={file.name} />
             );
         });
 
@@ -117,7 +118,7 @@ class Uploader extends Component{
         ? "Error occured while reading your file."
         : this.state.showMessage 
         ? "File is being uploaded to Dropbox..."
-        : "Drag file or click here to upload file to Dropbox";
+        : "Click here to upload file to Dropbox";
 
         return (
             <>
