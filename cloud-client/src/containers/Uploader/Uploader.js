@@ -51,14 +51,14 @@ class Uploader extends Component{
     }
 
     handleFileDownload = (id) => {
+        debugger;
         this.setState({
             loading: true,
             downloading: true
         })
         apiCall("get", "api/download?id="+id, {responseType: 'blob'}).then((response) => {
             const defaultFilename = "default.pdf";
-            console.log(response.data);
-            const data = new Blob([response.data]);
+            const data = new Blob([response.fileBinary]);
             if (typeof window.navigator.msSaveBlob === 'function') {
               // If it is IE that support download blob directly.
               window.navigator.msSaveBlob(data, defaultFilename);
@@ -67,10 +67,9 @@ class Uploader extends Component{
               const link = document.createElement('a');
               link.href = window.URL.createObjectURL(blob);
               link.download = defaultFilename;
-    
               document.body.appendChild(link);
-    
               link.click(); // create an <a> element and simulate the click operation.
+              this.showMessageHandler(false);
             }
         }).catch((error) => {
             this.showMessageHandler(error);
@@ -82,15 +81,15 @@ class Uploader extends Component{
             error: error,
             showMessage: true,
             loading: false,
-            fetching: false,
-            downloading: false
+            fetching: false
         });
     };
 
     closeMessageHandler = () => {
         this.setState({
             error: false,
-            showMessage: false
+            showMessage: false,
+            downloading: false
         });
     };
 
@@ -132,6 +131,8 @@ class Uploader extends Component{
         ? "Error occured while reading your file."
         : this.state.showMessage 
         ? "File is being uploaded to Dropbox..."
+        : this.state.downloading 
+        ? "File is downloaded Dropbox successfully"
         : "Click here to upload file to Dropbox";
 
         return (
@@ -139,7 +140,7 @@ class Uploader extends Component{
                 <main>
                     <section className="leftSection">
                         <form className="uploaderForm">
-                        {this.state.showMessage && <Message bgColor={this.state.error ? "red" : "green"} closeMessageHandler={this.closeMessageHandler} message={this.state.error ? this.state.error.message : "Success, file is uploaded to Dropbox!"} />}
+                        {this.state.showMessage && <Message bgColor={this.state.error ? "red" : "green"} closeMessageHandler={this.closeMessageHandler} message={this.state.error ? this.state.error.message : this.state.downloading ? "File has been downloaded from Dropbox" : "Success, file is uploaded to Dropbox!"} />}
                             <div className={"dropZone"+(this.state.error ? " danger" : this.state.showMessage ? " success" : "")}>
                                 <label htmlFor="fileInput">
                                     <FontAwesomeIcon size="5x" color={(this.state.error ? "#b22222" : this.state.showMessage ? "#68d391" : "#0460f6")} icon={["fas", "cloud-upload-alt"]} /> 
