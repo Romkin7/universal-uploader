@@ -50,11 +50,7 @@ if(app.get("env") === "Websiteion") {
 }
 
 //use API routes here
-if(process.env.NODE_ENV === "production") {
-    app.use(handleFilesRoutes);
-} else {
-    app.use("/api", handleFilesRoutes);
-}
+app.use("/api", handleFilesRoutes);
 
 //Serve react app in production to the browser
 if(process.env.NODE_ENV === "production") {

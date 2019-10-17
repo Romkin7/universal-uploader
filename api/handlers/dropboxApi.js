@@ -1,6 +1,8 @@
 // Dropbox configuration
 const fetch = require('node-fetch');
 const Dropbox = require('dropbox').Dropbox;
+const fs = require('fs');
+const path = require('path');
 const dbx = new Dropbox({ 
     accessToken: process.env.APP_ACCESS_TOKEN,
     fetch
@@ -61,12 +63,20 @@ module.exports.fetchFiles = async(req, res, next) => {
  */
 module.exports.downloadFile = (req, res, next) => {
     try {
-        console.log(req.query.filename);
-        dbx.filesDownload({path: req.query.filename}).then((response) => {
+        dbx.filesDownload({path: req.query.id}).then(async(response) => {
             console.log(response);
-            res.download(response);
-            return;
+            const file = response;
+            const dest = path.resolve("api/downloads", file.name);
+            const writeStream = fs.createWriteStream(dest);
+            await writeStream.write(file.fileBinary, "base64");
+            writeStream.end();
+            res.download(path.resolve("api/downloads/"+file.name), () => {
+                fs.unlink(path.resolve("api/downloads/"+file.name), () => {
+                    return;
+                });
+            });
         }).catch((err) => {
+            console.log(err);
             return next({
                 status: 403,
                 message: "Something went wrong while downloading file."

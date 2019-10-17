@@ -26,7 +26,7 @@ class Uploader extends Component{
         const formdata = new FormData();
         formdata.append("file_upload", event.target.files[0])
         setHeader("multipart/form-data", null);
-        apiCall("post", "/upload", formdata).then(() => {
+        apiCall("post", "api/upload", formdata).then(() => {
             this.setState({
                 loading: true,
                 fetching: true,
@@ -39,7 +39,7 @@ class Uploader extends Component{
     }
 
     handleFileFetching = () => {
-        apiCall("get", "/fetch", false).then((response) => {
+        apiCall("get", "api/fetch", false).then((response) => {
             this.setState({
                 files: response,
                 loading: false,
@@ -50,13 +50,28 @@ class Uploader extends Component{
         });
     }
 
-    handleFileDownload = (filename) => {
+    handleFileDownload = (id) => {
         this.setState({
             loading: true,
             downloading: true
         })
-        apiCall("get", "/download?filename="+filename, false).then((response) => {
-            
+        apiCall("get", "api/download?id="+id, {responseType: 'blob'}).then((response) => {
+            const defaultFilename = "default.pdf";
+            console.log(response.data);
+            const data = new Blob([response.data]);
+            if (typeof window.navigator.msSaveBlob === 'function') {
+              // If it is IE that support download blob directly.
+              window.navigator.msSaveBlob(data, defaultFilename);
+            } else {
+              const blob = data;
+              const link = document.createElement('a');
+              link.href = window.URL.createObjectURL(blob);
+              link.download = defaultFilename;
+    
+              document.body.appendChild(link);
+    
+              link.click(); // create an <a> element and simulate the click operation.
+            }
         }).catch((error) => {
             this.showMessageHandler(error);
         });
@@ -108,7 +123,7 @@ class Uploader extends Component{
                 thumbnail = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWZvbGRlciI+PHBhdGggZD0iTTIyIDE5YTIgMiAwIDAgMS0yIDJINGEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmg1bDIgM2g5YTIgMiAwIDAgMSAyIDJ6Ij48L3BhdGg+PC9zdmc+`
             }
             return(    
-                <ListItem  key={file.id} thumbnail={thumbnail} clickHandler={() => this.handleFileDownload(file.path_display)} name={file.name} />
+                <ListItem  key={file.id} thumbnail={thumbnail} clickHandler={() => this.handleFileDownload(file.id)} name={file.name} />
             );
         });
 
