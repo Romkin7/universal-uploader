@@ -8,6 +8,21 @@ li {
     animation: fade-in forwards 1s ease-in;
 }
 
+.button, a, li, label, input {
+    cursor: pointer;
+}
+
+li button {
+    float: right;
+}
+
+.button {
+    border: none;
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+}
+
 section.rightSection h4,
 li:not(:last-child) {
     border-bottom: 1.5px solid white;
