@@ -27,7 +27,7 @@ router.get("/fetch", async(req, res, next) => {
  */
 router.get("/download", async(req, res, next) => {
     try {
-        return dropboxApi.downloadFile(req, res, req.query.filename, next);
+        return dropboxApi.downloadFile(req, res, next);
     } catch(err) {
         return next({
             status: 500,

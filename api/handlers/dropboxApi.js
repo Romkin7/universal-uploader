@@ -59,15 +59,14 @@ module.exports.fetchFiles = async(req, res, next) => {
  *  Status: Public
  *  Description: Download specific file from Dropbox to Computer
  */
-module.exports.downloadFile = (req, res, filename, next) => {
-
+module.exports.downloadFile = (req, res, next) => {
     try {
-        dbx.filesDownload({path: filename}).then((response) => {
+        console.log(req.query.filename);
+        dbx.filesDownload({path: req.query.filename}).then((response) => {
             console.log(response);
             res.download(response);
             return;
         }).catch((err) => {
-            console.log(err);
             return next({
                 status: 403,
                 message: "Something went wrong while downloading file."
