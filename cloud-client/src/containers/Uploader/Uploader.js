@@ -129,11 +129,11 @@ class Uploader extends Component{
         // Set content that will be displayed in dropzone label
         const content = this.state.error 
         ? "Error occured while reading your file."
-        : this.state.showMessage 
-        ? "File is being uploaded to Dropbox..."
+        : this.state.showMessage && !this.state.downloading
+        ? "File is uploaded to Dropbox"
         : this.state.downloading 
-        ? "File is downloaded Dropbox successfully"
-        : "Click here to upload file to Dropbox";
+        ? "File is downloaded from Dropbox"
+        : "Click to upload file to Dropbox";
 
         return (
             <>

@@ -69,6 +69,7 @@ module.exports.downloadFile = (req, res, next) => {
             const writeStream = fs.createWriteStream(dest);
             await writeStream.write(file.fileBinary, "base64");
             writeStream.end();
+            // Read file from folder and pipe it to browser
             const src = fs.createReadStream(dest);
             src.pipe(res);
             return;
