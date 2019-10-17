@@ -36,11 +36,13 @@ In the dashboard, go to OAuth 2 section under Generated access token and click t
 
 after getting dropbox configuation
 
-type in commandline 
+type into commandline or torminal
 
 npm install concurrently nodemon --save-dev -g
 
 to start whole app run command 
+
+you should run it inside of very root folder on  nodejs backend server side
 
 npm run dev
 
