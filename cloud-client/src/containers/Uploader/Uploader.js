@@ -98,7 +98,6 @@ class Uploader extends Component{
               return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
             }
           }).map((file) => {
-              console.log(file);
             const type = file['.tag']
             let thumbnail
             if (type === 'file') {

@@ -67,7 +67,6 @@ module.exports.downloadFile = (req, res, next) => {
             res.download(response);
             return;
         }).catch((err) => {
-            console.log(err);
             return next({
                 status: 403,
                 message: "Something went wrong while downloading file."
