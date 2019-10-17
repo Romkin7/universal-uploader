@@ -60,11 +60,14 @@ module.exports.fetchFiles = async(req, res, next) => {
  *  Description: Download specific file from Dropbox to Computer
  */
 module.exports.downloadFile = (req, res, filename, next) => {
+
     try {
         dbx.filesDownload({path: filename}).then((response) => {
+            console.log(response);
             res.download(response);
             return;
         }).catch((err) => {
+            console.log(err);
             return next({
                 status: 403,
                 message: "Something went wrong while downloading file."
@@ -84,7 +87,7 @@ module.exports.uploadFile = async(req, res, filename, next) => {
     try {
         const args = {
             contents: req.files.file_upload.data,
-            path: "/"+filename,
+            path: "/"+filename.split(" ").join(""),
             mode: 'add', // other modes are: 
             autorename: true,
             mute: false,

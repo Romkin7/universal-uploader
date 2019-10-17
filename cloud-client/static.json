@@ -5,7 +5,7 @@
     },
     "proxies": {
         "/api": {
-            "origin": "https://cloud-server-rt.herokuapp.com/api/"
+            "origin": "https://cloud-server-rt.herokuapp.com/"
         }
     }
 }

@@ -14,7 +14,8 @@ class Uploader extends Component{
             error: false,
             loading: false,
             fetching: false,
-            showMessage: false
+            showMessage: false,
+            downloading: false
         }
     }
 
@@ -50,9 +51,15 @@ class Uploader extends Component{
     }
 
     handleFileDownload = (filename) => {
-        apiCall("get", "/download", filename).then((response) => {
-            
+        this.setState({
+            loading: true,
+            downloading: true
         })
+        apiCall("get", "/download?filename="+filename, false).then((response) => {
+            
+        }).catch((error) => {
+            this.showMessageHandler(error);
+        });
     };
 
     showMessageHandler = (error) => {
@@ -60,7 +67,8 @@ class Uploader extends Component{
             error: error,
             showMessage: true,
             loading: false,
-            fetching: false
+            fetching: false,
+            downloading: false
         });
     };
 
@@ -100,7 +108,7 @@ class Uploader extends Component{
                 thumbnail = `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWZvbGRlciI+PHBhdGggZD0iTTIyIDE5YTIgMiAwIDAgMS0yIDJINGEyIDIgMCAwIDEtMi0yVjVhMiAyIDAgMCAxIDItMmg1bDIgM2g5YTIgMiAwIDAgMSAyIDJ6Ij48L3BhdGg+PC9zdmc+`
             }
             return(    
-                <ListItem  key={file.id} thumbnail={thumbnail} name={file.name} />
+                <ListItem  key={file.id} thumbnail={thumbnail} clickHandler={() => this.handleFileDownload(file.path_lower)} name={file.name} />
             );
         });
 
@@ -132,7 +140,7 @@ class Uploader extends Component{
                             {list}
                         </ul>  
                     </section>
-                    {this.state.loading && <Loading text={ this.state.fetching ? "Fetching files from Dropbox..." : "Your file is being uploaded to Dropbox..." } />}
+                    {this.state.loading && <Loading text={ this.state.fetching ? "Fetching files from Dropbox..." : this.state.downloading ? "Downloading your file from Dropbox..." : "Your file is being uploaded to Dropbox..." } />}
                 </main>
             </>
         )
