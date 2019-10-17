@@ -64,19 +64,15 @@ module.exports.fetchFiles = async(req, res, next) => {
 module.exports.downloadFile = (req, res, next) => {
     try {
         dbx.filesDownload({path: req.query.id}).then(async(response) => {
-            console.log(response);
             const file = response;
             const dest = path.resolve("api/downloads", file.name);
             const writeStream = fs.createWriteStream(dest);
             await writeStream.write(file.fileBinary, "base64");
             writeStream.end();
-            res.download(path.resolve("api/downloads/"+file.name), () => {
-                fs.unlink(path.resolve("api/downloads/"+file.name), () => {
-                    return;
-                });
-            });
+            const src = fs.createReadStream(dest);
+            src.pipe(res);
+            return;
         }).catch((err) => {
-            console.log(err);
             return next({
                 status: 403,
                 message: "Something went wrong while downloading file."
