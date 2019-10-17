@@ -2,6 +2,7 @@ main {
     position: relative;
     width: 100%;
     display: flex;
+    min-height: 86vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
