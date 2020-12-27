@@ -22,7 +22,7 @@ Features
 
 Getting started
 ---------------
-Seting up Dropbox account
+Setting up Dropbox account
 The setup
 In order to build on top of Dropbox, you first need a Dropbox account. After you’ve registered, head over to the developer section. Choose My apps on the lefthand side of the dashboard and click Create app.
 
@@ -34,9 +34,9 @@ Preferred settings for this tutorial
 
 In the dashboard, go to OAuth 2 section under Generated access token and click the Generate button to get an API accessToken, which we will save for later.
 
-after getting dropbox configuation
+after getting dropbox configuration
 
-type into commandline or torminal
+type into commandline or terminal
 
 npm install concurrently nodemon --save-dev -g
 
@@ -50,6 +50,6 @@ npm run dev
 Features
 --------
 
-Featurs of this app are as followes
+Features of this app are as follows
 
-ability to uload an image, fetch images and download ona
+ability to uload an image, fetch images and download one
